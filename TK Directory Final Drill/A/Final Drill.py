@@ -8,7 +8,7 @@ from tkinter import *
 import tkinter as tk
 
 
-path = 'C:\\A\\'
+path = os.getcwd()
 source = os.listdir(path) #listdir() method
 
 mtime = os.path.getmtime(path) # getmtime() method
