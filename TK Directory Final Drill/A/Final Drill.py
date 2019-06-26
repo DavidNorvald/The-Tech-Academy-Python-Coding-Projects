@@ -10,7 +10,6 @@ import tkinter as tk
 
 path = 'C:\\A\\'
 source = os.listdir(path) #listdir() method
-destination = 'C:\\A\\B'
 
 mtime = os.path.getmtime(path) # getmtime() method
 local_time = time.ctime(mtime)
@@ -77,6 +76,9 @@ class ParentWindow(Frame):
         self.btn_close = Button(self.master, width=12, height=2, text='Close Program')
         self.btn_close.grid(row=4,column=3,padx=(200,10),pady=(10,10))
 
+
+
+
     def setFolderPath(self):
             folder_selected = filedialog.askdirectory()
             self.folderPath.set(folder_selected)
@@ -84,11 +86,16 @@ class ParentWindow(Frame):
     def folder_path(self):
         return self.folderPath.get()  
 
+
     def fileTransfer(self):
         for files in source:
             if files.endswith(".txt"):
-                shutil.copy(files,destination) # Shutil's move() method
-                print("Transfered: ", files, " to: ", destination, " on: ", local_time)
+                destination = 'C:\\B\\'
+                try:
+                    os.makedirs(destination); # creates the destination folder
+                except:
+                    shutil.copy(files, destination) # Shutil's copy/move() method
+                    print("Transfered: ", files, " to: ", destination, " on: ", local_time)
 
 
 
